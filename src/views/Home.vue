@@ -1,17 +1,16 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Weather app" />
+    <PxPrincipalInformationWeather />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import PxPrincipalInformationWeather from "@/components/PxPrincipalInformationWeather";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    PxPrincipalInformationWeather,
   },
 };
 </script>

@@ -1,0 +1,22 @@
+@import "../utils/_variables.scss";
+.weather__location {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: $color-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-button {
+    padding: 0;
+    outline: none;
+    border: 0;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    svg {
+      font-size: 1.25rem;
+    }
+  }
+}

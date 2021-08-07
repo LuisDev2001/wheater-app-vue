@@ -1,6 +1,6 @@
 <template>
   <div class="container__button">
-    <button class="container__button-action">{{ textButton }}</button>
+    <button :class="classButton">{{ textButton }}</button>
   </div>
 </template>
 
@@ -9,8 +9,11 @@ export default {
   name: "PxButton",
   props: {
     textButton: String,
+    classButton: String,
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "~@/assets/sass/components/_PxButton.scss";
+</style>

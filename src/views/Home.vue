@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PxPrincipalInformationWeather from "@/components/PxPrincipalInformationWeather";
+import PxPrincipalInformationWeather from "@/components/WeatherInformation/PxPrincipalInformationWeather";
 
 export default {
   name: "Home",

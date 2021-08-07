@@ -12,3 +12,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.weather__image-type {
+  img {
+    margin: 76px auto 0;
+    display: block;
+    max-width: 150px;
+  }
+}
+</style>

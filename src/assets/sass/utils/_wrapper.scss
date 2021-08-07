@@ -6,11 +6,13 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
-  gap: 2rem 0;
+  gap: 32px 26px;
   width: 100%;
   height: auto;
+  align-items: center;
+  justify-items: center;
   @media screen and (min-width: 768px) {
     gap: 30px 1.5rem;
     grid-template-columns: repeat(2, 1fr);

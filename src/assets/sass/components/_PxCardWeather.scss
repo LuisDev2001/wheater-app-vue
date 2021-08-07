@@ -1,0 +1,26 @@
+.card__weather {
+  background: #1e213a;
+  width: 120px;
+  max-width: 100%;
+  padding: 18px 22px;
+  &-day {
+    color: #e7e7eb;
+    margin: 0 0 10px 0;
+  }
+  &-image {
+    max-width: 56px;
+    margin: 0 0 30px 0;
+  }
+  &-temperature {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-active {
+    color: #e7e7eb;
+  }
+  &-unactive {
+    color: #a09fb1;
+  }
+}

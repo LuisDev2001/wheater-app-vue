@@ -19,8 +19,16 @@ export default {
 };
 </script>
 
-<style laang="scss" scoped>
+<style lang="scss" scoped>
 .weather-days-container {
-  padding: 52px 16px;
+  padding: 52px 3.375rem;
+  grid-template-columns: 1fr;
+  gap: 32px 16px;
+  @media screen and (min-width: 420px) {
+    &.grid {
+      gap: 32px 26px;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }
 </style>

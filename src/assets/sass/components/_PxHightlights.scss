@@ -1,0 +1,45 @@
+@import "../utils/_variables.scss";
+
+.hightlights {
+  padding: 0 1.4375rem;
+  h2 {
+    font-family: $font-bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0 0 2rem 0;
+  }
+  .card__hightlights {
+    padding: 1.875rem 1.375rem;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    color: #e7e7eb;
+    background: #1e213a;
+
+    &:last-child {
+      margin: 0;
+    }
+    &-near-me {
+      span:last-child {
+        font-size: 0.875rem;
+      }
+    }
+    &-icon {
+      background: #616375;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(175deg);
+      margin: 0 8px 0 0;
+      padding: 9px;
+      svg {
+        font-size: 10px;
+      }
+    }
+  }
+}

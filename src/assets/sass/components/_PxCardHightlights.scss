@@ -1,0 +1,23 @@
+@import "../utils/_variables.scss";
+
+.card__hightlights {
+  &-title {
+    font-family: $font-regular;
+    font-size: 1rem;
+  }
+  &-numbers {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    span:first-child {
+      font-family: $font-bold;
+      font-size: 5.5rem;
+      margin: 0 4px 0 0;
+    }
+    span:last-child {
+      font-size: 3.5rem;
+      font-family: $font-regular;
+      padding: 0 0 5px 0;
+    }
+  }
+}

@@ -1,3 +1,14 @@
 #app {
   background: #100e1d;
+  .footer {
+    margin: 86px 0 0 0;
+    text-align: center;
+    padding: 0 0 24px 0;
+    p {
+      color: #a09fb1;
+      b {
+        text-decoration: underline;
+      }
+    }
+  }
 }

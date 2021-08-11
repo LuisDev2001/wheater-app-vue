@@ -3,6 +3,9 @@
     <PxPrincipalInformationWeather />
     <PxDaysInformationWeather />
     <PxHightlights />
+    <div class="footer">
+      <p>created by <b>LuisDev2001</b> - devChallenges.io</p>
+    </div>
   </div>
 </template>
 

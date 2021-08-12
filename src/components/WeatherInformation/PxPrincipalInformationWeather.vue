@@ -3,7 +3,7 @@
     <div class="weather__search">
       <PxButton
         classButton="weather__search-button-places"
-        textButton="Seach for places"
+        textButton="Search for places"
       />
       <PxLocation />
     </div>

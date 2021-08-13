@@ -16,4 +16,15 @@
     padding: 11px 18px;
     letter-spacing: 0.5px;
   }
+  .search__location-action-button {
+    height: 48px;
+    width: 100%;
+    background: #3c47e9;
+    color: #ffffff;
+    font-family: $font-medium;
+    transition: background 0.3s ease;
+    &:hover {
+      background: #4d58f3;
+    }
+  }
 }

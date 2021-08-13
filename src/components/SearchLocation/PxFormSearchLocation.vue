@@ -30,4 +30,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "~@/assets/sass/components/_PxFormSearchLocation.scss";
+</style>

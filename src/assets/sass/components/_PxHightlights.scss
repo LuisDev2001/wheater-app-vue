@@ -73,4 +73,18 @@
       text-align: right;
     }
   }
+  @media screen and (min-width: 992px) {
+    padding: 0 3.375rem;
+    .hightlights__container-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(328px, 1fr));
+      gap: 28px;
+    }
+    .card__hightlights {
+      margin: 0;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 0 7.6875rem 0 9.625rem;
+  }
 }

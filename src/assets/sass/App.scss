@@ -1,5 +1,6 @@
 #app {
   background: #100e1d;
+  width: 100%;
   .footer {
     margin: 86px 0 0 0;
     text-align: center;
@@ -9,6 +10,23 @@
       b {
         text-decoration: underline;
       }
+    }
+  }
+  @media screen and (min-width: 992px) {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 0 0 30%;
+    .app__weather {
+      width: 30%;
+      // position: sticky;
+      // top: 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+    .app__weather-information {
+      // width: calc(100% - 30%);
+      width: 100%;
     }
   }
 }

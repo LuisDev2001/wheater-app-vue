@@ -1,9 +1,11 @@
 <template>
-  <div class="home">
+  <div class="app__weather">
     <!-- Modal of search location -->
     <PxSearchLocation />
 
     <PxPrincipalInformationWeather />
+  </div>
+  <div class="app__weather-information">
     <PxDaysInformationWeather />
     <PxHightlights />
     <div class="footer">

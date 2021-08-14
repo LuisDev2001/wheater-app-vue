@@ -19,6 +19,9 @@ export default {
     margin: 76px auto 0;
     display: block;
     max-width: 150px;
+    @media screen and (min-width: 1200px) {
+      margin: 46px auto 0;
+    }
   }
 }
 </style>

@@ -67,4 +67,13 @@
       }
     }
   }
+  @media screen and (min-width: 992px) {
+    height: 100vh;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 2.625rem 2.875rem 3.25rem;
+    &__information {
+      margin: 20px 0 0 0;
+    }
+  }
 }

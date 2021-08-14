@@ -4,6 +4,7 @@
       <PxButton
         classButton="weather__search-button-places"
         textButton="Search for places"
+        @click="handleOpenSearchLoaction"
       />
       <PxLocation />
     </div>
@@ -43,6 +44,8 @@ import PxImageWeather from "../ImageWeather/PxImageWeather";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+import { inject } from "vue";
 library.add(faMapMarkerAlt);
 
 export default {
@@ -52,6 +55,17 @@ export default {
     PxLocation,
     PxImageWeather,
     FontAwesomeIcon,
+  },
+  setup() {
+    const store = inject("storeWeatherApp");
+
+    const handleOpenSearchLoaction = () => {
+      store.value.modalState = true;
+    };
+
+    return {
+      handleOpenSearchLoaction,
+    };
   },
 };
 </script>

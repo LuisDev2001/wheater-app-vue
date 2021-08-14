@@ -1,6 +1,14 @@
 <template>
-  <div class="search__location">
-    <div class="search__location-button-close">
+  <div
+    :class="{
+      search__location: true,
+      'is-open': isOpen,
+    }"
+  >
+    <div
+      class="search__location-button-close"
+      @click="handleCloseSearchLocation"
+    >
       <div class="search__location-button-close-action">
         <font-awesome-icon icon="times" />
       </div>
@@ -21,14 +29,29 @@ import PxSearchResult from "./PxSearchResult";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { inject } from "@vue/runtime-core";
 library.add(faTimes);
 
 export default {
   name: "PxSearchLocation",
+  props: {
+    isOpen: Boolean,
+  },
   components: {
     PxFormSearchLocation,
     PxSearchResult,
     FontAwesomeIcon,
+  },
+  setup() {
+    const store = inject("storeWeatherApp");
+
+    const handleCloseSearchLocation = () => {
+      store.value.modalState = false;
+    };
+
+    return {
+      handleCloseSearchLocation,
+    };
   },
 };
 </script>

@@ -32,6 +32,17 @@ export default {
   setup() {
     const storeWeatherApp = ref({
       modalState: false,
+      lattitude: 0,
+      longitude: 0,
+      baseApiWeather:
+        "https://www.metaweather.com/api/location/search/?lattlong=",
+      apiKey: "81f5dba8053df6f6fdab9bae6a1ae59a",
+      dataWeather: {
+        temperature: "",
+        temperatureDescription: "",
+        locationName: "",
+      },
+      date: "",
     });
 
     provide("storeWeatherApp", storeWeatherApp);

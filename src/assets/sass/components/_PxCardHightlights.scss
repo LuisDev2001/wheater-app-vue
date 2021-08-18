@@ -7,8 +7,9 @@
   }
   &-numbers {
     display: inline-flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: flex-end;
+    justify-content: center;
     span:first-child {
       font-family: $font-bold;
       font-size: 5.5rem;

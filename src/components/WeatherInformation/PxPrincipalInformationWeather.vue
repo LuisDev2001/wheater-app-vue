@@ -59,7 +59,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { inject, onMounted, ref } from "vue";
+import { inject, onMounted, computed, ref } from "vue";
 library.add(faMapMarkerAlt);
 
 export default {
@@ -96,11 +96,8 @@ export default {
 
     onMounted(() => {
       navigator.geolocation.getCurrentPosition(success, error, options.value);
-      const date = new Date();
-      const day = date.getDate();
-      const month = date.toLocaleString("default", { month: "short" });
-      const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
-      store.value.date = `${dayName}. ${day} ${month.replace(".", "")}`;
+
+      store.value.date = setDateOnLive;
     });
 
     const getInfoOwnUbication = async () => {
@@ -119,11 +116,33 @@ export default {
       const location = data.name;
 
       store.value.dataWeather = {
-        temperature: temperatureCelcius.toFixed(1),
+        temperature: temperatureCelcius.toFixed(0),
         temperatureDescription: temperatureDescription,
         locationName: location,
       };
+
+      // Set data for Hightlights
+      const wind = data.wind.speed;
+      const humidity = data.main.humidity;
+      const visibility = data.visibility;
+      const pressure = data.main.pressure;
+      setHightlights(wind, humidity, visibility, pressure);
     };
+
+    const setHightlights = (wind, humidity, visibility, pressure) => {
+      store.value.hightlights.windStatus = wind;
+      store.value.hightlights.humidity = humidity;
+      store.value.hightlights.visibility = visibility;
+      store.value.hightlights.airPressure = pressure;
+    };
+
+    const setDateOnLive = computed(() => {
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.toLocaleString("default", { month: "short" });
+      const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+      return `${dayName}. ${day} ${month.replace(".", "")}`;
+    });
 
     // Methods
     const handleOpenSearchLoaction = () => {

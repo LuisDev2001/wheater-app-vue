@@ -18,7 +18,7 @@ export default {
   name: "PxCardHightlights",
   props: {
     cardTitle: String,
-    cardNumber: String,
+    cardNumber: Number,
     cardTypeNumber: String,
   },
 };

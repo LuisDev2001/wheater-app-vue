@@ -43,6 +43,12 @@ export default {
         locationName: "",
       },
       date: "",
+      hightlights: {
+        windStatus: 0,
+        humidity: 0,
+        visibility: 0,
+        airPressure: 0,
+      },
     });
 
     provide("storeWeatherApp", storeWeatherApp);

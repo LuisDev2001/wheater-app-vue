@@ -54,6 +54,11 @@
 import PxButton from "../Button/PxButton";
 import PxLocation from "../Button/PxLocation";
 import PxImageWeather from "../ImageWeather/PxImageWeather";
+//Utils
+import { getData } from "@/utils/getData";
+import setHightlights from "@/utils/setHightlights";
+import setWeather from "@/utils/setWeather";
+
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -105,35 +110,43 @@ export default {
         lattitude: store.value.lattitude,
         longitude: store.value.longitude,
       });
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${store.value.lattitude}&lon=${store.value.longitude}&appid=${store.value.apiKey}`
-      );
-      const data = await response.json();
+      try {
+        // API KEYS AND INFORMATION
+        const LAT_AND_LONG = `lat=${store.value.lattitude}&lon=${store.value.longitude}`;
+        const API_KEY = store.value.apiKey;
+        const data = await getData(
+          `${store.value.BASE_URL}/weather?${LAT_AND_LONG}&appid=${API_KEY}`
+        );
 
-      const temperatureKelvin = data.main.temp;
-      const temperatureCelcius = temperatureKelvin - 273.15;
-      const temperatureDescription = data.weather[0].main;
-      const location = data.name;
+        //Set information weather
+        const temperatureKelvin = data.main.temp;
+        const temperatureDescription = data.weather[0].main;
+        const location = data.name;
+        const temperatureCelcius = temperatureKelvin - 273.15;
+        const objWeather = setWeather(
+          temperatureCelcius,
+          temperatureDescription,
+          location
+        );
+        store.value.dataWeather = objWeather;
 
-      store.value.dataWeather = {
-        temperature: temperatureCelcius.toFixed(0),
-        temperatureDescription: temperatureDescription,
-        locationName: location,
-      };
+        // Set data for Hightlights
+        const wind = data.wind.speed;
+        const humidity = data.main.humidity;
+        const visibility = data.visibility;
+        const pressure = data.main.pressure;
 
-      // Set data for Hightlights
-      const wind = data.wind.speed;
-      const humidity = data.main.humidity;
-      const visibility = data.visibility;
-      const pressure = data.main.pressure;
-      setHightlights(wind, humidity, visibility, pressure);
-    };
+        const objHightlights = setHightlights(
+          wind,
+          humidity,
+          visibility,
+          pressure
+        );
 
-    const setHightlights = (wind, humidity, visibility, pressure) => {
-      store.value.hightlights.windStatus = wind;
-      store.value.hightlights.humidity = humidity;
-      store.value.hightlights.visibility = visibility;
-      store.value.hightlights.airPressure = pressure;
+        store.value.hightlights = objHightlights;
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
     };
 
     const setDateOnLive = computed(() => {

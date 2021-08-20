@@ -34,21 +34,15 @@ export default {
       modalState: false,
       lattitude: 0,
       longitude: 0,
-      baseApiWeather:
-        "https://www.metaweather.com/api/location/search/?lattlong=",
+      BASE_URL: "https://api.openweathermap.org/data/2.5",
       apiKey: "81f5dba8053df6f6fdab9bae6a1ae59a",
-      dataWeather: {
-        temperature: "",
-        temperatureDescription: "",
-        locationName: "",
-      },
+      dataWeather: {},
       date: "",
-      hightlights: {
-        windStatus: 0,
-        humidity: 0,
-        visibility: 0,
-        airPressure: 0,
-      },
+      hightlights: {},
+      forecastFiveDays: [],
+      locationSucces: false,
+      locationError: false,
+      loader: false,
     });
 
     provide("storeWeatherApp", storeWeatherApp);

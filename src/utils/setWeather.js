@@ -1,4 +1,4 @@
-export default function setWeather(
+export function setWeather(
   temperatureCelcius,
   temperatureDescription,
   location

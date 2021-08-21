@@ -1,4 +1,4 @@
-export default function setHightlights(wind, humidity, visibility, pressure) {
+export function setHightlights(wind, humidity, visibility, pressure) {
   const objHightlights = {
     windStatus: wind,
     humidity: humidity,

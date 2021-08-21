@@ -15,7 +15,7 @@
       <div class="weather__information-temperature">
         <p class="weather__information-temperature-number">
           {{
-            store.dataWeather.temperature !== ""
+            store.locationSucces !== false
               ? store.dataWeather.temperature
               : "--"
           }}
@@ -26,7 +26,7 @@
       </div>
       <p class="weather__information-type">
         {{
-          store.dataWeather.temperatureDescription !== ""
+          store.locationSucces !== false
             ? store.dataWeather.temperatureDescription
             : "--"
         }}
@@ -41,9 +41,7 @@
       <p class="weather__information-ubication">
         <font-awesome-icon icon="map-marker-alt" />
         {{
-          store.dataWeather.locationName !== ""
-            ? store.dataWeather.locationName
-            : "--"
+          store.locationSucces !== false ? store.dataWeather.locationName : "--"
         }}
       </p>
     </div>
@@ -56,9 +54,9 @@ import PxLocation from "../Button/PxLocation";
 import PxImageWeather from "../ImageWeather/PxImageWeather";
 //Utils
 import { getData } from "@/utils/getData";
-import setHightlights from "@/utils/setHightlights";
-import setWeather from "@/utils/setWeather";
-
+import { setHightlights } from "@/utils/setHightlights";
+import { setWeather } from "@/utils/setWeather";
+import { setDateForecast } from "@/utils/setDayForecast";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -90,12 +88,18 @@ export default {
       const coordenadas = position.coords;
       store.value.lattitude = coordenadas.latitude;
       store.value.longitude = coordenadas.longitude;
+      store.value.locationSucces = true;
 
+      //Get info own ubi
       await getInfoOwnUbication();
+
+      //Get forecast five days
+      await getForecastFiveDays();
     };
 
     //Geolocation error
     const error = (error) => {
+      store.value.locationError = true;
       console.warn("ERROR(" + error.code + "): " + error.message);
     };
 
@@ -106,10 +110,6 @@ export default {
     });
 
     const getInfoOwnUbication = async () => {
-      console.log({
-        lattitude: store.value.lattitude,
-        longitude: store.value.longitude,
-      });
       try {
         // API KEYS AND INFORMATION
         const LAT_AND_LONG = `lat=${store.value.lattitude}&lon=${store.value.longitude}`;
@@ -144,6 +144,52 @@ export default {
         );
 
         store.value.hightlights = objHightlights;
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    };
+
+    const getForecastFiveDays = async () => {
+      try {
+        let objForecastFiveDays = {
+          minTemp: 0,
+          maxTemp: 0,
+          day: "",
+        };
+        let DateObj = new Date();
+        const LAT_AND_LONG = `lat=${store.value.lattitude}&lon=${store.value.longitude}`;
+        const API_KEY = store.value.apiKey;
+        const data = await getData(
+          `${store.value.BASE_URL}/forecast?${LAT_AND_LONG}&appid=${API_KEY}`
+        );
+        let dateResponse = "";
+        let tomorrowValue = 0;
+        for (let index = 0; index < data.list.length; index += 8) {
+          dateResponse = data.list[index].dt_txt.split(" ")[0];
+          tomorrowValue = Number(
+            data.list[index].dt_txt.split(" ")[0].split("-")[2]
+          );
+          const fullDate = setDateForecast(dateResponse);
+
+          if (DateObj.getDate() + 1 === tomorrowValue) {
+            objForecastFiveDays = {
+              minTemp: data.list[index].main.temp_min,
+              maxTemp: data.list[index].main.temp_max,
+              day: "Tomorrow",
+            };
+          } else {
+            objForecastFiveDays = {
+              minTemp: data.list[index].main.temp_min,
+              maxTemp: data.list[index].main.temp_max,
+              day: fullDate,
+            };
+          }
+
+          store.value.forecastFiveDays = [
+            ...store.value.forecastFiveDays,
+            objForecastFiveDays,
+          ];
+        }
       } catch (error) {
         console.log(`Error: ${error}`);
       }

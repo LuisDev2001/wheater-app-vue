@@ -5,7 +5,7 @@
       <PxCardHightlights
         cardTitle="Wind status"
         :cardNumber="
-          store.hightlights.windStatus !== 0 ? store.hightlights.windStatus : 0
+          store.locationSucces !== false ? store.hightlights.windStatus : 0
         "
         cardTypeNumber="mph"
       >
@@ -20,7 +20,7 @@
       <PxCardHightlights
         cardTitle="Humidity"
         :cardNumber="
-          store.hightlights.humidity !== 0 ? store.hightlights.humidity : 0
+          store.locationSucces !== false ? store.hightlights.humidity : 0
         "
         cardTypeNumber="%"
       >
@@ -35,7 +35,7 @@
               class="card__hightlights-range-charge"
               :style="{
                 width:
-                  store.hightlights.humidity !== 0
+                  store.locationSucces !== false
                     ? store.hightlights.humidity + '%'
                     : 0 + '%',
               }"
@@ -48,7 +48,7 @@
       <PxCardHightlights
         cardTitle="Visibility"
         :cardNumber="
-          store.hightlights.visibility !== 0 ? store.hightlights.visibility : 0
+          store.locationSucces !== false ? store.hightlights.visibility : 0
         "
         cardTypeNumber="miles"
       >
@@ -57,9 +57,7 @@
       <PxCardHightlights
         cardTitle="Air Pressure"
         :cardNumber="
-          store.hightlights.airPressure !== ''
-            ? store.hightlights.airPressure
-            : 0
+          store.locationSucces !== false ? store.hightlights.airPressure : 0
         "
         cardTypeNumber="mb"
       >

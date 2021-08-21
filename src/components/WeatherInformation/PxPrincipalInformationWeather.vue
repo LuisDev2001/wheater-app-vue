@@ -9,42 +9,9 @@
       <PxLocation @click="handleFindLocation" />
     </div>
 
-    <PxImageWeather />
+    <PxImageWeather :urlImage="store.imgTypePrincipal" />
 
-    <div class="weather__information">
-      <div class="weather__information-temperature">
-        <p class="weather__information-temperature-number">
-          {{
-            store.locationSucces !== false
-              ? store.dataWeather.temperature
-              : "--"
-          }}
-        </p>
-        <div class="weather__information-temperature-type">
-          <span>°</span> <span>C</span>
-        </div>
-      </div>
-      <p class="weather__information-type">
-        {{
-          store.locationSucces !== false
-            ? store.dataWeather.temperatureDescription
-            : "--"
-        }}
-      </p>
-      <div class="weather__information-date">
-        <p>Today</p>
-        <span>•</span>
-        <p>
-          {{ store.date }}
-        </p>
-      </div>
-      <p class="weather__information-ubication">
-        <font-awesome-icon icon="map-marker-alt" />
-        {{
-          store.locationSucces !== false ? store.dataWeather.locationName : "--"
-        }}
-      </p>
-    </div>
+    <PxWeatherInformation />
   </section>
 </template>
 
@@ -52,18 +19,14 @@
 import PxButton from "../Button/PxButton";
 import PxLocation from "../Button/PxLocation";
 import PxImageWeather from "../ImageWeather/PxImageWeather";
+import PxWeatherInformation from "../WeatherInformation/PxWeatherInformation";
 //Utils
 import { getData } from "@/utils/getData";
 import { setHightlights } from "@/utils/setHightlights";
 import { setWeather } from "@/utils/setWeather";
 import { setDateForecast } from "@/utils/setDayForecast";
-//Icons
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import { inject, onMounted, computed, ref } from "vue";
-library.add(faMapMarkerAlt);
 
 export default {
   name: "PxPrincipalInformationWeather",
@@ -71,7 +34,7 @@ export default {
     PxButton,
     PxLocation,
     PxImageWeather,
-    FontAwesomeIcon,
+    PxWeatherInformation,
   },
   setup() {
     const store = inject("storeWeatherApp");
@@ -117,7 +80,6 @@ export default {
         const data = await getData(
           `${store.value.BASE_URL}/weather?${LAT_AND_LONG}&appid=${API_KEY}`
         );
-
         //Set information weather
         const temperatureKelvin = data.main.temp;
         const temperatureDescription = data.weather[0].main;
@@ -144,6 +106,9 @@ export default {
         );
 
         store.value.hightlights = objHightlights;
+
+        //Set type principal image
+        store.value.imgTypePrincipal = data.weather[0].icon;
       } catch (error) {
         console.log(`Error: ${error}`);
       }
@@ -170,18 +135,19 @@ export default {
             data.list[index].dt_txt.split(" ")[0].split("-")[2]
           );
           const fullDate = setDateForecast(dateResponse);
-
           if (DateObj.getDate() + 1 === tomorrowValue) {
             objForecastFiveDays = {
               minTemp: data.list[index].main.temp_min,
               maxTemp: data.list[index].main.temp_max,
               day: "Tomorrow",
+              imgUrl: data.list[index].weather[0].icon,
             };
           } else {
             objForecastFiveDays = {
               minTemp: data.list[index].main.temp_min,
               maxTemp: data.list[index].main.temp_max,
               day: fullDate,
+              imgUrl: data.list[index].weather[0].icon,
             };
           }
 

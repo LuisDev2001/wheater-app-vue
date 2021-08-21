@@ -10,6 +10,7 @@
         v-for="(day, index) in store.forecastFiveDays"
         :key="index"
         :dayName="day.day"
+        :imageWeather="day.imgUrl"
         :maxTemperature="Number((day.maxTemp - 273.15).toFixed(0))"
         :minTemperature="Number((day.minTemp - 273.15).toFixed(0))"
       />

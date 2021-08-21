@@ -1,5 +1,5 @@
 export function setDateForecast(date) {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const months = [
     "Jan",
     "Feby",

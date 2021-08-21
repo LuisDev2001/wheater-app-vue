@@ -1,6 +1,6 @@
 <template>
   <div class="weather__image-type">
-    <img src="@/assets/img/Shower.png" alt="Image Weather" />
+    <img :src="'assets/img/' + urlImage + '.png'" alt="Image Weather" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 <style lang="scss" scoped>
 .weather__image-type {
   img {
-    margin: 76px auto 0;
+    margin: 16px auto 0;
     display: block;
     max-width: 150px;
     @media screen and (min-width: 1200px) {

@@ -5,7 +5,7 @@
     </p>
     <img
       class="card__weather-image"
-      src="@/assets/img/HeavyCloud.png"
+      :src="'assets/img/' + imageWeather + '.png'"
       alt="Image weather"
     />
     <section class="card__weather-temperature">

@@ -1,79 +1,19 @@
 .weather {
   padding: 1.125rem 0.6875rem 6.5625rem;
+  height: 100vh;
   background: #1e213a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   &__search {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  &__information {
-    margin: 40px 0 0 0;
-    text-align: center;
-    &-temperature {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      position: relative;
-      margin: 0 0 1.4375rem 0;
-      &-number {
-        font-size: 6rem;
-        color: #e7e7eb;
-      }
-      &-type {
-        padding: 0 0 6px;
-        color: #a09fb1;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        span {
-          font-size: 2.5rem;
-          &:first-child {
-            font-size: 5rem;
-            position: relative;
-            top: 30px;
-            right: 10px;
-            right: -5px;
-          }
-        }
-      }
-    }
-    &-ubication,
-    &-date,
-    &-type {
-      color: #a09fb1;
-    }
-    &-type {
-      margin: 0 0 3rem 0;
-      font-size: 2.25rem;
-    }
-    &-ubication,
-    &-date {
-      font-size: 1.125rem;
-    }
-    &-ubication {
-      svg {
-        margin: 0 0.5625rem 0 0;
-      }
-    }
-    &-date {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 0 2.125rem 0;
-      span,
-      p:first-child {
-        margin: 0 1rem 0 0;
-      }
-    }
-  }
-  @media screen and (min-width: 992px) {
-    height: 100vh;
-  }
+
   @media screen and (min-width: 1200px) {
     padding: 2.625rem 2.875rem 3.25rem;
-    &__information {
-      margin: 20px 0 0 0;
-    }
   }
 }

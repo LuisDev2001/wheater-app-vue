@@ -43,6 +43,7 @@ export default {
       locationSucces: false,
       locationError: false,
       loader: false,
+      imgTypePrincipal: "",
     });
 
     provide("storeWeatherApp", storeWeatherApp);

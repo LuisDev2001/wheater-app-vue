@@ -1,10 +1,10 @@
 <template>
   <div class="weather__image-type">
     <slot v-if="!store.locationSucces">
-      <img src="@/assets/img/loader.svg" alt="Loader" />
+      <img src="@/assets/img/loader.svg" :alt="descriptionImage" />
     </slot>
     <slot v-else>
-      <img :src="'/assets/img/' + urlImage + '.png'" alt="Image Weather" />
+      <img :src="'/assets/img/' + urlImage + '.png'" :alt="descriptionImage" />
     </slot>
   </div>
 </template>
@@ -15,6 +15,7 @@ export default {
   name: "PxImageWeather",
   props: {
     urlImage: String,
+    descriptionImage: String,
   },
   setup() {
     const store = inject("storeWeatherApp");

@@ -6,7 +6,7 @@
     <img
       class="card__weather-image"
       :src="'assets/img/' + imageWeather + '.png'"
-      alt="Image weather"
+      :alt="descriptionWeather"
     />
     <section class="card__weather-temperature">
       <p class="card__weather-active">{{ maxTemperature }}°C</p>
@@ -23,6 +23,7 @@ export default {
     imageWeather: String,
     minTemperature: Number,
     maxTemperature: Number,
+    descriptionWeather: String,
   },
 };
 </script>

@@ -11,6 +11,7 @@
         :key="index"
         :dayName="day.day"
         :imageWeather="day.imgUrl"
+        :descriptionWeather="day.descriptionWeather"
         :maxTemperature="Number((day.maxTemp - 273.15).toFixed(0))"
         :minTemperature="Number((day.minTemp - 273.15).toFixed(0))"
       />

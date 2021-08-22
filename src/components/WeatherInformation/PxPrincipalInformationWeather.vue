@@ -9,7 +9,10 @@
       <PxLocation @click="handleFindLocation" />
     </div>
 
-    <PxImageWeather :urlImage="store.imgTypePrincipal" />
+    <PxImageWeather
+      :urlImage="store.imgTypePrincipal"
+      :descriptionImage="store.descPrincipalWeather"
+    />
 
     <PxWeatherInformation />
   </section>
@@ -109,6 +112,7 @@ export default {
 
         //Set type principal image
         store.value.imgTypePrincipal = data.weather[0].icon;
+        store.value.descPrincipalWeather = data.weather[0].description.toUpperCase();
       } catch (error) {
         console.log(`Error: ${error}`);
       }
@@ -141,6 +145,9 @@ export default {
               maxTemp: data.list[index].main.temp_max,
               day: "Tomorrow",
               imgUrl: data.list[index].weather[0].icon,
+              descriptionWeather: data.list[
+                index
+              ].weather[0].description.toUpperCase(),
             };
           } else {
             objForecastFiveDays = {
@@ -148,9 +155,11 @@ export default {
               maxTemp: data.list[index].main.temp_max,
               day: fullDate,
               imgUrl: data.list[index].weather[0].icon,
+              descriptionWeather: data.list[
+                index
+              ].weather[0].description.toUpperCase(),
             };
           }
-
           store.value.forecastFiveDays = [
             ...store.value.forecastFiveDays,
             objForecastFiveDays,

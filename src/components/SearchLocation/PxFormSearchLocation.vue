@@ -20,10 +20,9 @@
 </template>
 
 <script>
-import { inject, computed, ref } from "vue";
+import { inject } from "vue";
 import PxButton from "../Button/PxButton";
-//Utils
-import { arrayCities } from "@/utils/getCities";
+import { getData } from "@/utils/getData";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -38,8 +37,12 @@ export default {
   },
   setup() {
     const store = inject("storeWeatherApp");
-    const searchCity = () => {
-      store.value.citiesResult = arrayCities.filter((result) =>
+
+    const searchCity = async () => {
+      const data = await getData(
+        "https://api-cities-fake.herokuapp.com/arrayCities"
+      );
+      store.value.citiesResult = data.filter((result) =>
         result.name
           .toLowerCase()
           .includes(store.value.cityNameLocation.toLowerCase())

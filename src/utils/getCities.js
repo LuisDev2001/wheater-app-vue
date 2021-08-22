@@ -1,4 +1,4 @@
-export const cities = [
+export const arrayCities = [
   {
     "country": "Andorra",
     "geonameid": 3040051,

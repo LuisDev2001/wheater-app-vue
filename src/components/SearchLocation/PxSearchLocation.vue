@@ -47,6 +47,8 @@ export default {
 
     const handleCloseSearchLocation = () => {
       store.value.modalState = false;
+      store.value.citiesResult = [];
+      store.value.cityNameLocation = "";
     };
 
     return {

@@ -1,8 +1,14 @@
 <template>
-  <form class="search__location-form">
+  <form class="search__location-form" @submit.prevent="searchCity">
     <div class="search__location-input">
       <font-awesome-icon icon="search" />
-      <input type="text" name="location" placeholder="search location" />
+      <input
+        type="text"
+        v-model="store.cityNameLocation"
+        name="location"
+        placeholder="search location"
+        autocomplete="off"
+      />
     </div>
     <div class="search__location-action">
       <PxButton
@@ -14,7 +20,10 @@
 </template>
 
 <script>
+import { inject, computed, ref } from "vue";
 import PxButton from "../Button/PxButton";
+//Utils
+import { arrayCities } from "@/utils/getCities";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +35,21 @@ export default {
   components: {
     FontAwesomeIcon,
     PxButton,
+  },
+  setup() {
+    const store = inject("storeWeatherApp");
+    const searchCity = () => {
+      store.value.citiesResult = arrayCities.filter((result) =>
+        result.name
+          .toLowerCase()
+          .includes(store.value.cityNameLocation.toLowerCase())
+      );
+    };
+
+    return {
+      searchCity,
+      store,
+    };
   },
 };
 </script>

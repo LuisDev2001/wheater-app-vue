@@ -45,6 +45,8 @@ export default {
       loader: false,
       imgTypePrincipal: "",
       descPrincipalWeather: "",
+      cityNameLocation: "",
+      citiesResult: [],
     });
 
     provide("storeWeatherApp", storeWeatherApp);

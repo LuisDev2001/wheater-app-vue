@@ -1,14 +1,27 @@
 <template>
   <div class="weather__image-type">
-    <img :src="'assets/img/' + urlImage + '.png'" alt="Image Weather" />
+    <slot v-if="!store.locationSucces">
+      <img src="@/assets/img/loader.svg" alt="Loader" />
+    </slot>
+    <slot v-else>
+      <img :src="'/assets/img/' + urlImage + '.png'" alt="Image Weather" />
+    </slot>
   </div>
 </template>
 
 <script>
+import { inject } from "@vue/runtime-core";
 export default {
   name: "PxImageWeather",
   props: {
     urlImage: String,
+  },
+  setup() {
+    const store = inject("storeWeatherApp");
+
+    return {
+      store,
+    };
   },
 };
 </script>

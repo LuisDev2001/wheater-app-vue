@@ -2,14 +2,12 @@
   <div class="search__location-result">
     <ul class="search__location-result-list">
       <slot v-if="store.citiesResult.length > 0">
-        <li
-          class="search__location-result-item"
+        <PxItemLocation
           v-for="(cityName, index) in store.citiesResult"
           :key="index"
-        >
-          {{ cityName.name }}, {{ cityName.country }}
-          <font-awesome-icon icon="chevron-right" />
-        </li>
+          :cityName="cityName.name"
+          :cityNameCountry="cityName.country"
+        />
       </slot>
       <slot v-else>
         <li class="search__location-no-result">
@@ -21,17 +19,13 @@
 </template>
 
 <script>
-//Icons
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { inject, ref, watchEffect } from "@vue/runtime-core";
-library.add(faChevronRight);
+import PxItemLocation from "./PxItemLocation";
+import { inject, watchEffect } from "@vue/runtime-core";
 
 export default {
   name: "PxSearchResult",
   components: {
-    FontAwesomeIcon,
+    PxItemLocation,
   },
   setup() {
     const store = inject("storeWeatherApp");

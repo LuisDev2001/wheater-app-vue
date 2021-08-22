@@ -47,6 +47,7 @@ export default {
           .toLowerCase()
           .includes(store.value.cityNameLocation.toLowerCase())
       );
+      console.log(store.value.citiesResult);
     };
 
     return {

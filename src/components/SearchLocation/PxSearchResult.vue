@@ -3,10 +3,11 @@
     <ul class="search__location-result-list">
       <slot v-if="store.citiesResult.length > 0">
         <PxItemLocation
-          v-for="(cityName, index) in store.citiesResult"
+          v-for="(city, index) in store.citiesResult"
           :key="index"
-          :cityName="cityName.name"
-          :cityNameCountry="cityName.country"
+          :cityName="city.name"
+          :cityNameCountry="city.country"
+          :cityCode="city.geonameid"
         />
       </slot>
       <slot v-else>

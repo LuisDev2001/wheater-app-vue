@@ -147,6 +147,7 @@ export default {
       border: 1px solid transparent;
       transition: border-color 0.3s ease;
       color: #e7e7eb;
+      letter-spacing: 1px;
       svg {
         color: #616475;
       }

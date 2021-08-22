@@ -12,7 +12,7 @@
       </slot>
       <slot v-else>
         <li class="search__location-no-result">
-          Escribe el nombre de una ciudad en el buscador
+          Write the name of a city in the search engine
         </li>
       </slot>
     </ul>

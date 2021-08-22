@@ -84,6 +84,11 @@
       margin: 0;
     }
   }
+  @media screen and (min-width: 1200px) {
+    .hightlights__container-cards {
+      gap: 48px;
+    }
+  }
   @media screen and (min-width: 1440px) {
     padding: 0 7.6875rem 0 9.625rem;
   }
